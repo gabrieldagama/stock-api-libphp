@@ -10,7 +10,7 @@ namespace AdobeStock\Api\Client;
 
 use \AdobeStock\Api\Client\SearchCategory as SearchCategoryFactory;
 use \AdobeStock\Api\Core\Config as CoreConfig;
-use AdobeStock\Api\Exception\StockApi as StockApiException;
+use \AdobeStock\Api\Exception\StockApi as StockApiException;
 use \AdobeStock\Api\Request\SearchCategory as SearchCategoryRequest;
 use \AdobeStock\Api\Response\SearchCategory as SearchCategoryResponse;
 use \AdobeStock\Api\Client\Http\HttpInterface;
@@ -28,6 +28,7 @@ use \AdobeStock\Api\Response\LicenseHistory as LicenseHistoryResponse;
 
 class AdobeStock
 {
+
     /**
      * Configuration that needs to be initialized.
      * @var CoreConfig
@@ -45,7 +46,7 @@ class AdobeStock
      * @var SearchFiles
      */
     private $_search_files_factory;
-
+    
     /**
      * Factory object of all license apis.
      * @var LicenseFactory;
@@ -229,7 +230,7 @@ class AdobeStock
         $current_page = $this->_search_files_factory->currentSearchPageIndex();
         return $current_page;
     }
-
+    
     /**
      * Requests licensing information about a specific asset for a specific user
      * @param LicenseRequest $request      object containing
@@ -242,7 +243,7 @@ class AdobeStock
         $response = $this->_license_factory->getContentInfo($request, $access_token, $this->_http_client);
         return $response;
     }
-
+    
     /**
      * Requests a license for an asset for a specific user.
      * @param LicenseRequest $request
@@ -335,7 +336,7 @@ class AdobeStock
         $this->_license_history_factory->initializeLicenseHistory($request, $access_token, $this->_http_client);
         return $this;
     }
-
+    
     /**
      * Method to get next license history files response page.
      * @return LicenseHistoryResponse
@@ -345,7 +346,7 @@ class AdobeStock
         $response = $this->_license_history_factory->getNextLicenseHistory();
         return $response;
     }
-
+    
     /**
      * Method to get previous license history files response page.
      * @return LicenseHistoryResponse
@@ -355,7 +356,7 @@ class AdobeStock
         $response = $this->_license_history_factory->getPreviousLicenseHistory();
         return $response;
     }
-
+    
     /**
      * Method to get response from last api call.
      * @return LicenseHistoryResponse
@@ -365,7 +366,7 @@ class AdobeStock
         $response = $this->_license_history_factory->getLastLicenseHistory();
         return $response;
     }
-
+    
     /**
      * Method to skip to a specific license files response page.
      * @param int $page_index
@@ -376,7 +377,7 @@ class AdobeStock
         $response = $this->_license_history_factory->getLicenseHistoryPage($page_index);
         return $response;
     }
-
+    
     /**
      * Method to get total license files available.
      * @return int
@@ -386,7 +387,7 @@ class AdobeStock
         $total_files = $this->_license_history_factory->getTotalLicenseHistoryFiles();
         return $total_files;
     }
-
+    
     /**
      * Method to get total license results pages.
      * @return int
@@ -396,7 +397,7 @@ class AdobeStock
         $total_pages = $this->_license_history_factory->getTotalLicenseHistoryPages();
         return $total_pages;
     }
-
+    
     /**
      * Method to get response from last api call.
      * @return int
@@ -406,6 +407,4 @@ class AdobeStock
         $current_page = $this->_license_history_factory->currentLicenseHistoryPageIndex();
         return $current_page;
     }
-
-
 }
